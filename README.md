@@ -20,8 +20,6 @@ Clone the repo https://github.com/sfc-gh-praj/app-app-communication
 
 ### Step 1: Setting Up the Source Application
 
-![Source App Setup](images/source_app_setup.png)
-
 - We are using snowcli to create DB objects and the image repository. You can follow [this link](https://docs.snowflake.com/en/developer-guide/snowflake-cli/installation/installation) to install and configure snowcli. Ensure you configure the [default snowflake connection](https://docs.snowflake.com/en/developer-guide/snowflake-cli/connecting/configure-connections#set-the-default-connection) for your snowcli commands to execute.
 - Run the [shell script](app_app_comm/build-and-push.sh) from the root clone repo directory which will build the docker image and pushes it to the image repository which is created in the same shell script.
 
@@ -110,7 +108,7 @@ INFO:     10.244.0.136:54836 - "GET /users HTTP/1.1" 200 OK
 
 ## Conclusion
 
-In this tutorial, we've successfully demonstrated how to create and deploy two native applications in Snowflake that communicate with each other:
+In this example, we've successfully demonstrated how to create and deploy two native applications in Snowflake that communicate with each other:
 
 1. A FastAPI-based source application that exposes user data through REST endpoints
 2. A Streamlit-based destination application that consumes the API and presents the data through a user interface
