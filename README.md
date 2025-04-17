@@ -19,7 +19,7 @@ Clone the repo https://github.com/sfc-gh-praj/app-app-communication
 
 ## Implementation Steps
 
-### Step 1: Setting Up the Source Application
+### Step 1: Setting Up the Source Native Application
 
 - We are using snowcli to create DB objects and the image repository. You can follow [this link](https://docs.snowflake.com/en/developer-guide/snowflake-cli/installation/installation) to install and configure snowcli. Ensure you configure the [default snowflake connection](https://docs.snowflake.com/en/developer-guide/snowflake-cli/connecting/configure-connections#set-the-default-connection) for your snowcli commands to execute.
 - Run the [shell script](app_app_comm/build-and-push.sh) from the root clone repo directory which will build the docker image and pushes it to the image repository which is created in the same shell script.
@@ -52,7 +52,7 @@ call source_app_praj.setup.service_dns_name();
 call source_app_praj.setup.drop_service_and_pool();
 ```
 
-### Step 2: Building the Destination Application
+### Step 2: Building the Destination Native Application
 
 - This application will be a streamlit UI running in a contaniner which will be talking to the source application over the internal dns name to get the user information using the API endpoint that source application is exposing. 
 - Run the [shell script](app_app_comm/build-and-push.sh) from the root clone repo directory which will build the docker image and pushes it to the image repository which is created in the same shell script. Update the IMAGE_NAME and DIR_NAME as mentioned in the shell script for creating docker images used by the destination application.
