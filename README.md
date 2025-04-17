@@ -6,13 +6,14 @@ This repository contains the code for the app to app communication using REST AP
 ## Solution Components
 Clone the repo https://github.com/sfc-gh-praj/app-app-communication
 
-### 1. Source Application (App1)
+### 1. Source Application (Source_App)
 - FastAPI service exposing user data through REST endpoints
 - Deployed as a SPCS service using compute pools
 - Provides two endpoints one with `/users/{user_id}` endpoint to fetch specific user details and one with /users to display all users.
 
-### 2. Destination Application (App2) 
-- Streamlit UI for displaying user information. This streamlit is running as a service in SPCS.
+### 2. Destination Application (Destination_App) 
+
+- Streamlit UI for displaying user information. This streamlit is running as a service in SPCS. This can be anything which is running as a service in SPCS.
 - Makes API calls to the source application over internal DNS
 - Shows how to consume external app endpoints
 
