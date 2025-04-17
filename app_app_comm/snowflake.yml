@@ -1,0 +1,9 @@
+# This is a project definition file, a required component if you intend to use Snowflake CLI in a project directory such as this template.
+definition_version: 1
+native_app:
+  name: source_app
+  source_stage: public.na_stage
+  artifacts:
+    - src: source_app/*
+      dest: ./
+# Ensure you change the src name to destination_app for destination_app

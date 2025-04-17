@@ -1,0 +1,16 @@
+spec:
+  container:  
+    - name: users
+      image: sfsenorthamerica-praj01.registry.snowflakecomputing.com/app_app_comm_db/public/docker_images/users-api:latest
+      env:
+        SNOWFLAKE_WAREHOUSE: small_warehouse
+      resources:                           
+          requests:
+            cpu: 1
+          limits:
+            cpu: 1
+  endpoints:
+    - name: api
+      port: 8000
+      public: true
+

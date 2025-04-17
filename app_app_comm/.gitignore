@@ -1,0 +1,4 @@
+snowflake.local.yml
+output/**
+source_app/build_push.sh
+destination_app/build_push.sh

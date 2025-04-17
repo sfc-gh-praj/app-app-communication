@@ -1,0 +1,20 @@
+spec:
+  containers:  
+    - name: users
+      image: sfsenorthamerica-praj01.registry.snowflakecomputing.com/app_app_comm_db/public/docker_images/fastapi-app:latest
+      env:
+        SNOWFLAKE_WAREHOUSE: small_warehouse
+      resources:                           
+          requests:
+            cpu: 1
+          limits:
+            cpu: 1
+  endpoints:
+    - name: server
+      port: 8000
+      public: true
+serviceRoles:
+  - name: streamlit_endpoint_role
+    endpoints:
+    - server
+
