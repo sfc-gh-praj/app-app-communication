@@ -1,7 +1,7 @@
 spec:
   container:  
     - name: users
-      image: sfsenorthamerica-praj01.registry.snowflakecomputing.com/app_app_comm_db/public/docker_images/users-api:latest
+      image: <org-acct>.registry.snowflakecomputing.com/app_app_comm_db/public/docker_images/users-api:latest
       env:
         SNOWFLAKE_WAREHOUSE: small_warehouse
       resources:                           

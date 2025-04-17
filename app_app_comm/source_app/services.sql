@@ -46,44 +46,44 @@ $$;
 grant usage on procedure setup.create_service(array)
     to application role app_public;
 
-create or replace procedure setup.create_api_service()
-returns varchar
-language sql
-execute as owner
-as $$
-    begin
-        let pool_name := (select current_database()) || 'usersapi_app_pool';
+-- create or replace procedure setup.create_api_service()
+-- returns varchar
+-- language sql
+-- execute as owner
+-- as $$
+--     begin
+--         let pool_name := (select current_database()) || 'usersapi_app_pool';
 
-        create compute pool if not exists identifier(:pool_name)
-            MIN_NODES = 1
-            MAX_NODES = 1
-            INSTANCE_FAMILY = CPU_X64_XS;
+--         create compute pool if not exists identifier(:pool_name)
+--             MIN_NODES = 1
+--             MAX_NODES = 1
+--             INSTANCE_FAMILY = CPU_X64_XS;
 
-        create service if not exists services.users_api_service
-            in compute pool identifier(:pool_name)
-            from spec='api_service.yml';
+--         create service if not exists services.users_api_service
+--             in compute pool identifier(:pool_name)
+--             from spec='api_service.yml';
 
-        grant usage on service services.users_api_service
-            to application role app_public;
+--         grant usage on service services.users_api_service
+--             to application role app_public;
         
-        -- GRANT USAGE,MONITOR,OPERATE ON SERVICE services.spcs_na_service TO APPLICATION ROLE app_public;
-        GRANT SERVICE ROLE services.users_api_service!ALL_ENDPOINTS_USAGE to APPLICATION ROLE app_public;
-        GRANT USAGE ON SERVICE services.spcs_na_service TO APPLICATION ROLE app_public;
+--         -- GRANT USAGE,MONITOR,OPERATE ON SERVICE services.spcs_na_service TO APPLICATION ROLE app_public;
+--         GRANT SERVICE ROLE services.users_api_service!ALL_ENDPOINTS_USAGE to APPLICATION ROLE app_public;
+--         GRANT USAGE ON SERVICE services.spcs_na_service TO APPLICATION ROLE app_public;
         
-        CREATE OR REPLACE FUNCTION services.udf_getuser(user_id varchar)
-        RETURNS VARIANT
-        SERVICE=services.users_api_service
-        ENDPOINT=api
-        AS '/specific_user';
+--         CREATE OR REPLACE FUNCTION services.udf_getuser(user_id varchar)
+--         RETURNS VARIANT
+--         SERVICE=services.users_api_service
+--         ENDPOINT=api
+--         AS '/specific_user';
 
-        grant usage on function services.udf_getuser(varchar)
-            to application role app_public;
+--         grant usage on function services.udf_getuser(varchar)
+--             to application role app_public;
 
-        return 'Done';
-    end;
-$$;
-grant usage on procedure setup.create_api_service()
-    to application role app_public;
+--         return 'Done';
+--     end;
+-- $$;
+-- grant usage on procedure setup.create_api_service()
+--     to application role app_public;
 
 create or replace procedure setup.suspend_service()
 returns varchar
@@ -92,7 +92,7 @@ execute as owner
 as $$
     begin
         alter service services.spcs_na_service suspend;
-        alter service services.users_api_service suspend;
+        -- alter service services.users_api_service suspend;
         return 'Done';
     end;
 $$;
@@ -106,7 +106,7 @@ execute as owner
 as $$
     begin
         alter service services.spcs_na_service resume;
-        alter service services.users_api_service resume;
+        -- alter service services.users_api_service resume;
         return 'Done';
     end;
 $$;
@@ -120,11 +120,11 @@ execute as owner
 as $$
     begin
         let pool_name := (select current_database()) || '_app_pool';
-        let api_pool_name := (select current_database()) || 'usersapi_app_pool';
+        -- let api_pool_name := (select current_database()) || 'usersapi_app_pool';
         drop service if exists services.spcs_na_service;
         drop compute pool if exists identifier(:pool_name);
-        drop service if exists services.users_api_service;
-        drop compute pool if exists identifier(:api_pool_name);
+        -- drop service if exists services.users_api_service;
+        -- drop compute pool if exists identifier(:api_pool_name);
 
         return 'Done';
     end;
@@ -147,20 +147,20 @@ $$;
 grant usage on procedure setup.service_status()
     to application role app_public;
 
-create or replace procedure setup.users_api_service_status()
-returns varchar
-language sql
-execute as owner
-as $$
-    declare
-        service_status varchar;
-    begin
-        call system$get_service_status('services.users_api_service') into :service_status;
-        return parse_json(:service_status)[0]['status']::varchar;
-    end;
-$$;
-grant usage on procedure setup.users_api_service_status()
-    to application role app_public; 
+-- create or replace procedure setup.users_api_service_status()
+-- returns varchar
+-- language sql
+-- execute as owner
+-- as $$
+--     declare
+--         service_status varchar;
+--     begin
+--         call system$get_service_status('services.users_api_service') into :service_status;
+--         return parse_json(:service_status)[0]['status']::varchar;
+--     end;
+-- $$;
+-- grant usage on procedure setup.users_api_service_status()
+--     to application role app_public; 
 
 CREATE OR REPLACE PROCEDURE setup.service_endpoints()
 RETURNS VARCHAR
