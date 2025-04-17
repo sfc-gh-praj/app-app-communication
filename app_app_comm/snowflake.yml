@@ -6,4 +6,5 @@ native_app:
   artifacts:
     - src: source_app/*
       dest: ./
-# Ensure you change the src name to destination_app for destination_app
+      
+# Ensure you change the value of src destination_app to deploy destination_app
