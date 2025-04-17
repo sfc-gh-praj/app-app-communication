@@ -107,6 +107,10 @@ INFO:     10.244.0.136:54704 - "GET /users/7 HTTP/1.1" 200 OK
 INFO:     10.244.0.136:54836 - "GET /users HTTP/1.1" 200 OK
 ```
 
+If you are <b>not</b> granting source app application role to destination application, then you will encounter the below error while fetching user info from the streamlit UI:
+
+<I>Error fetching users: HTTPConnectionPool(host='spcs-na-service.oypy.svc.spcs.internal', port=8000): Max retries exceeded with url: /users (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9d25a52880>: Failed to establish a new connection: [Errno 110] Connection timed out')) </I>
+
 ## Conclusion
 
 In this example, we've successfully demonstrated how to create and deploy two native applications in Snowflake that communicate with each other:
