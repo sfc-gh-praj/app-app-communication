@@ -7,4 +7,4 @@ native_app:
     - src: source_app/*
       dest: ./
       
-# Ensure you change the value of src destination_app to deploy destination_app
+# Ensure you change the value of src to destination_app to deploy destination_app. Also the name which will be destination_app which is the name of the native application.
