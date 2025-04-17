@@ -12,7 +12,7 @@ Clone the repo https://github.com/sfc-gh-praj/app-app-communication
 - Provides two endpoints one with `/users/{user_id}` endpoint to fetch specific user details and one with /users to display all users.
 
 ### 2. Destination Application (App2) 
-- Streamlit UI for displaying user information
+- Streamlit UI for displaying user information. This streamlit is running as a service in SPCS.
 - Makes API calls to the source application over internal DNS
 - Shows how to consume external app endpoints
 
