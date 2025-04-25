@@ -85,7 +85,7 @@ call DESTINATION_APP_PRAJ.setup.SERVICE_ENDPOINTS();
 grant application role source_app_praj.custom_app_public to application DESTINATION_APP_PRAJ;
 ```
 
-- After the permissions are granted, launch the streamlit UI and you should be able to get the users details from the API which the soouce app is exposing.
+- After the permissions are granted, launch the streamlit UI and you should be able to get the users details from the API which the source app is exposing.
 
 #### Listing All users 
 ![Streamlit_UI](app_app_comm/AllUsers.png)
@@ -93,7 +93,7 @@ grant application role source_app_praj.custom_app_public to application DESTINAT
 #### Viewing Specific User Info
 ![Streamlit_UI](app_app_comm/SpecificUser.png)
 
-- Checking the source app container logs to track the logging information about the call being made from the source app
+- Checking the source app container logs to track the logging information about the call being made from the destination app
 ```sql
 SELECT value AS log_line
 FROM TABLE(
@@ -110,6 +110,21 @@ INFO:     10.244.0.136:54836 - "GET /users HTTP/1.1" 200 OK
 If you are <b>not</b> granting source app application role to destination application, then you will encounter the below error while fetching user info from the streamlit UI:
 
 <I>Error fetching users: HTTPConnectionPool(host='spcs-na-service.oypy.svc.spcs.internal', port=8000): Max retries exceeded with url: /users (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9d25a52880>: Failed to establish a new connection: [Errno 110] Connection timed out')) </I>
+
+
+## Clean up
+
+You can stop the service and drop the compute pool without dropping the application by running the following statement:
+
+```sh
+snow sql -q "call <app name>.setup.drop_service_and_pool()"
+```
+Optionally, you can remove the app + package altogether afterwards:
+
+```sh
+snow app teardown --cascade
+```
+> Version `2.4.0+` of Snowflake CLI should be installed in order to execute `--cascade` command.
 
 ## Conclusion
 

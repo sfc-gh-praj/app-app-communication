@@ -7,4 +7,5 @@ rsa_key.*
 testurl.py
 app/*
 coins.py
+test_kuber
 
